@@ -22,7 +22,7 @@ imageCredentials:
 
 
 imagePullSecrets:
-  - image-pull-secret
+  - name: image-pull-secret
 nameOverride: ""
 fullnameOverride: ""
 
