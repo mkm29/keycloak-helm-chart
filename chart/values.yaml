@@ -4,6 +4,7 @@
 
 appName: &name keycloak
 host: &host sso.smigula.io
+namespace: &namespace keycloak
 
 replicaCount: 1
 

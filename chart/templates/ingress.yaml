@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "chart.fullname" . -}}
+{{- $fullName := printf "%s%s" .Values.appName "-svc" -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
@@ -16,6 +16,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ .Values.appName }}-ingress
+  namespace: {{ .Values.namespace }}
   labels:
     {{- include "chart.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
