@@ -21,8 +21,8 @@ imageCredentials:
   password: "<token>"
 
 
-imagePullSecrets: []
-  # - image-pull-secret
+imagePullSecrets:
+  - image-pull-secret
 nameOverride: ""
 fullnameOverride: ""
 
