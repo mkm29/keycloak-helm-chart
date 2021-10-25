@@ -36,8 +36,8 @@ spec:
             secretName: {{ .secretName }}
             {{- end }}
         - name: keycloak-data
-          persistentVolumeClaim:
-            claimName: keycloak-pvc
+          hostPath:
+            path: /mnt/storage/keycloak
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
