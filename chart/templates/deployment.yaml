@@ -77,8 +77,8 @@ spec:
               value: {{ .password }}
             - name: DB_VENDOR
               value: {{ .database }}
-            - name: KEYCLOAK_FRONTEND_URL
-              value: {{ .frontendUrl }}
+#            - name: KEYCLOAK_FRONTEND_URL
+#              value: {{ .frontendUrl }}
             - name: KEYCLOAK_LOGLEVEL
               value: {{ .logLevel | default "INFO" }}
           {{- end }}
