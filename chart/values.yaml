@@ -39,7 +39,7 @@ serviceAccount:
 
 keycloakConfig:
   user: admin
-  password: admin
+  password: SmigAuth!
   database: h2
   frontendUrl: *host
 
@@ -129,7 +129,7 @@ containerPorts:
   https: 8443
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 80
   httpsPort: 443
 
