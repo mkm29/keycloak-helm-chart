@@ -35,9 +35,9 @@ spec:
             {{- with (index .Values.ingress.tls 0) }}
             secretName: {{ .secretName }}
             {{- end }}
-#        - name: keycloak-data
-#          hostPath:
-#            path: /mnt/storage/keycloak
+        - name: keycloak-data
+          persistentVolumeClaim:
+            claimName: keycloak-pvc
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -77,8 +77,8 @@ spec:
               value: {{ .password }}
             - name: DB_VENDOR
               value: {{ .database }}
-#            - name: KEYCLOAK_FRONTEND_URL
-#              value: {{ .frontendUrl }}
+            - name: PROXY_ADDRESS_FORWARDING
+              value: "true"
             - name: KEYCLOAK_LOGLEVEL
               value: {{ .logLevel | default "INFO" }}
           {{- end }}
@@ -86,8 +86,8 @@ spec:
           volumeMounts:
             - name: certs-volume
               mountPath: /etc/x509/https
- #           - name: keycloak-data
- #             mountPath: /opt/jboss/keycloak/standalone/data
+            - name: keycloak-data
+              mountPath: /opt/jboss/keycloak/standalone/data
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
